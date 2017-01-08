@@ -1,8 +1,19 @@
   <aside class="bg-dark">
       <div class="container text-center">
           <div class="call-to-action">
-              <h2>Free Download at Start Bootstrap!</h2>
-              <a href="#" class="btn btn-default btn-xl wow tada">Download Now!</a>
+              <h2>Want to be notified when we update our site?</h2>
+              <a class="btn btn-default btn-xl wow tada" id="subscribe">Subscribe!</a>
+
+              <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+
+              <script>
+              function showMailingPopUp() {
+                  require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"d42e85208e5af69949dcba0a7","lid":"1dcbcdd327"}) })
+                  document.cookie = "MCEvilPopupClosed=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+              };
+
+              document.getElementById("subscribe").onclick = function() {showMailingPopUp()};
+              </script>
           </div>
       </div>
   </aside>
