@@ -109,8 +109,10 @@ aside {
         }
     }
     @media (min-width: 768px) {
-        background-color: transparent;
+        // background-color: transparent;
+        background-color: rgba(white, 0.9);
         border-color: rgba(white, .3);
+
         .navbar-header .navbar-brand {
             color: rgba(white, .7);
             &:hover,
@@ -185,7 +187,7 @@ header {
         min-height: 100%;
         .header-content {
             position: absolute;
-            top: 50%;
+            top: 80%;
             -webkit-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
@@ -348,4 +350,3 @@ img::-moz-selection {
 body {
     -webkit-tap-highlight-color: $theme-dark;
 }
-
