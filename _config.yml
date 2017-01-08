@@ -14,3 +14,10 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+
+gems:
+  - jekyll-maps
+
+maps:
+  google:
+    api_key: AIzaSyCUDcCZpfPq13rH4HBNjzmNwHwkBjR_8Ts
