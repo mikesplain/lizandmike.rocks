@@ -359,10 +359,18 @@ body {
   color: $theme-dark;
 }
 
-a.link {
+a:hover.link {
   text-decoration: none;
 
-  :hover {
+  h3 {
     font-weight: 600;
   }
+  p {
+    font-weight: 600;
+  }
+}
+
+a:focus.link {
+  text-decoration: none;
+
 }

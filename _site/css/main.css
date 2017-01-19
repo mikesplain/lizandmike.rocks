@@ -111,5 +111,8 @@ body { -webkit-tap-highlight-color: #afb3a5; }
 
 #accomodations { color: #afb3a5; }
 
-a.link { text-decoration: none; }
-a.link :hover { font-weight: 600; }
+a:hover.link { text-decoration: none; }
+a:hover.link h3 { font-weight: 600; }
+a:hover.link p { font-weight: 600; }
+
+a:focus.link { text-decoration: none; }
