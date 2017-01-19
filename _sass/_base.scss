@@ -358,3 +358,11 @@ body {
 #accomodations {
   color: $theme-dark;
 }
+
+a.link {
+  text-decoration: none;
+
+  :hover {
+    font-weight: 600;
+  }
+}
