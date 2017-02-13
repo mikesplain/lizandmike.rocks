@@ -1,4 +1,5 @@
 # Liz and Mike's Wedding Website
+[![CircleCI](https://circleci.com/gh/mikesplain/lizandmike.rocks.svg?style=svg)](https://circleci.com/gh/mikesplain/lizandmike.rocks)
 
 # Creative Theme for Jekyll
 
