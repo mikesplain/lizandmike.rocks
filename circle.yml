@@ -1,0 +1,15 @@
+machine:
+  ruby:
+    version: 2.4.0
+
+
+test:
+  override:
+    - bundle exec jekyll doctor
+    - bundle exec jekyll build --destination docs
+    - git commit -am "Automated docs update"
+    - git push
+
+general:
+  artifacts:
+    - "docs"
