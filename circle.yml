@@ -6,11 +6,14 @@ machine:
 test:
   override:
     - bundle exec jekyll doctor
-    - bundle exec jekyll build --destination docs
-    - git config --global user.email "noreply@lizandmike.rocks"
-    - git config --global user.name "Circle Ci Docs Build"
-    - git commit -am "Automated docs update"
-    - git push
+    - >
+      if [ $(git diff-tree --no-commit-id --name-only @ |grep docs) ]; then
+          bundle exec jekyll build --destination docs
+          git config --global user.email "noreply@lizandmike.rocks"
+          git config --global user.name "Circle Ci Docs Build"
+          git commit -am "Automated docs update"
+          git push
+      fi
 
 general:
   artifacts:
