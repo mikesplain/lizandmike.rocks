@@ -7,6 +7,8 @@ test:
   override:
     - bundle exec jekyll doctor
     - bundle exec jekyll build --destination docs
+    - git config --global user.email "noreply@lizandmike.rocks"
+    - git config --global user.name "Circle Ci Docs Build"
     - git commit -am "Automated docs update"
     - git push
 
