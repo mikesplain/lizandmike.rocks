@@ -7,7 +7,7 @@ test:
   override:
     - bundle exec jekyll doctor
     - >
-      if $(git diff-tree --no-commit-id --name-only @ | grep -v docs | echo $?); then
+      if [ $(git diff-tree --no-commit-id --name-only @ | grep -v docs | echo $?) ]; then
           bundle exec jekyll build --destination docs
           git config --global user.email "noreply@lizandmike.rocks"
           git config --global user.name "Circle Ci Docs Build"
