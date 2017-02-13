@@ -149,6 +149,10 @@ aside {
     }
 }
 
+.navbar-spacer {
+  margin-bottom: 0px;
+}
+
 // Homepage Header
 
 header {
@@ -156,7 +160,7 @@ header {
     width: 100%;
     min-height: auto;
     @include background-cover;
-    background-position: center;
+    background-position: top;
     background-image: url('../img/header.jpg');
     text-align: center;
     color: white;
