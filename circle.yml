@@ -5,11 +5,10 @@ machine:
 
 test:
   override:
-    - git status
-    - git diff
     - bundle exec jekyll doctor
-    - git status
-    - git diff
+    - git diff-tree --no-commit-id --name-only @
+    - git diff-tree --no-commit-id --name-only @ | grep -v docs
+    - echo $?
     - >
       if [ $(git diff-tree --no-commit-id --name-only @ | grep -v docs | echo $?) ]; then
           git diff-tree --no-commit-id --name-only @ | grep -v docs
