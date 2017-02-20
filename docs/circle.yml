@@ -6,11 +6,8 @@ machine:
 test:
   override:
     - bundle exec jekyll doctor
-    - git diff-tree --no-commit-id --name-only @
-    - git diff-tree --no-commit-id --name-only @ | grep -v docs
-    - echo $?
     - >
-      if [ $(git diff-tree --no-commit-id --name-only @ | grep -v docs | echo $?) ]; then
+      if [ $(git diff-tree --no-commit-id --name-only @ | grep -v docs ) ]; then
           git diff-tree --no-commit-id --name-only @ | grep -v docs
           bundle exec jekyll build --destination docs
           git config --global user.email "noreply@lizandmike.rocks"
