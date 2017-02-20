@@ -382,3 +382,9 @@ a:focus.link {
   color: #ffffff;
   font-weight: bold;
 }
+
+#accomodations {
+  a:not(.btn) {
+    color: white;
+  }
+}
