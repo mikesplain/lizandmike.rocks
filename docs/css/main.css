@@ -120,3 +120,5 @@ a:hover.link p { font-weight: 600; }
 a:focus.link { text-decoration: none; }
 
 .hotel-name { color: #ffffff; font-weight: bold; }
+
+#accomodations a:not(.btn) { color: white; }
