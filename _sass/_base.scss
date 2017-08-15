@@ -388,3 +388,9 @@ a:focus.link {
     color: white;
   }
 }
+
+#ceremony {
+  a:not(.btn) {
+    color: white;
+  }
+}
