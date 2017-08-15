@@ -122,3 +122,5 @@ a:focus.link { text-decoration: none; }
 .hotel-name { color: #ffffff; font-weight: bold; }
 
 #accomodations a:not(.btn) { color: white; }
+
+#ceremony a:not(.btn) { color: white; }
