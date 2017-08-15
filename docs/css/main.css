@@ -123,4 +123,4 @@ a:focus.link { text-decoration: none; }
 
 #accomodations a:not(.btn) { color: white; }
 
-#ceremony a:not(.btn) { color: white; }
+#ceremony a { color: white; }
