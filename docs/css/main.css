@@ -124,3 +124,6 @@ a:focus.link { text-decoration: none; }
 #accomodations a:not(.btn) { color: white; }
 
 #ceremony a { color: white; }
+
+#schedule img { width: 100%; height: auto; }
+@media (min-width: 768px) { #schedule img { width: auto; height: auto; } }
