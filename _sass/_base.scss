@@ -394,3 +394,17 @@ a:focus.link {
     color: white;
   }
 }
+
+#schedule {
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (min-width: 768px) {
+    img {
+      width: auto;
+      height: auto;
+    }
+  }
+}
