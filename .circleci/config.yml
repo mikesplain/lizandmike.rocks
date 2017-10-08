@@ -1,33 +1,23 @@
 version: 2
 
 jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.4.2
-
-
-    steps:
-    - checkout
-    - restore_cache:
-        keys:
-          - gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-          - gem-cache-{{ arch }}-{{ .Branch }}
-          - gem-cache
-
-    - run: bundle install --path vendor/bundle
-
-    - save_cache:
-        key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
-
-
-
-  test:
+  build_and_test:
     docker:
       - image: circleci/ruby:2.4.2
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-{{ arch }}-{{ .Branch }}
+            - gem-cache
+
+      - run: bundle install --path vendor/bundle
+
+      - save_cache:
+          key: gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run:
           name: Jekyll Doctor
           command: bundle exec jekyll doctor
@@ -72,12 +62,10 @@ workflows:
   version: 2
   build_and_test_deploy:
     jobs:
-      - build
-      - test
+      - build_and_test
       - deploy:
           requires:
-            - build
-            - test
+            - build_and_test
           filters:
             branches:
               only: master
