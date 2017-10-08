@@ -8,6 +8,10 @@ machine:
 test:
   override:
     - bundle exec jekyll doctor
+deployment:
+  hub:
+    branch: master
+    commands:
     - >
       if $(git diff-tree --no-commit-id --name-only @ | grep -qv docs); then
           git diff-tree --no-commit-id --name-only @ | grep -v docs
@@ -18,11 +22,6 @@ test:
           git commit -am "Automated docs update"
           git push
       fi
-
-deployment:
-  hub:
-    branch: master
-    commands:
     - >
       docker run  -e "CLOUD_FLARE_API_KEY=$CLOUD_FLARE_API_KEY" \
                   -e "CLOUD_FLARE_EMAIL=$CLOUD_FLARE_EMAIL" \
