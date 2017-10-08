@@ -9,10 +9,10 @@ jobs:
     steps:
     - checkout
     - restore_cache:
-      keys:
-        - gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-        - gem-cache-{{ arch }}-{{ .Branch }}
-        - gem-cache
+        keys:
+          - gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          - gem-cache-{{ arch }}-{{ .Branch }}
+          - gem-cache
 
     - run: bundle install --path vendor/bundle
 
@@ -29,8 +29,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Jekyll Doctor
-        command: bundle exec jekyll doctor
+          name: Jekyll Doctor
+          command: bundle exec jekyll doctor
 
   deploy:
     docker:
@@ -38,35 +38,35 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Update docs
-        command: |
-          if $(git diff-tree --no-commit-id --name-only @ | grep -qv docs); then
-              git diff-tree --no-commit-id --name-only @ | grep -v docs
-              bundle exec jekyll build --destination docs
-              git config --global user.email "noreply@lizandmike.rocks"
-              git config --global user.name "Circle Ci Docs Build"
-              git add .
-              git commit -am "Automated docs update"
-              git push
-          fi
+          name: Update docs
+          command: |
+            if $(git diff-tree --no-commit-id --name-only @ | grep -qv docs); then
+                git diff-tree --no-commit-id --name-only @ | grep -v docs
+                bundle exec jekyll build --destination docs
+                git config --global user.email "noreply@lizandmike.rocks"
+                git config --global user.name "Circle Ci Docs Build"
+                git add .
+                git commit -am "Automated docs update"
+                git push
+            fi
       - setup_remote_docker
       - run:
-        name: Install Docker client
-        command: |
-          set -x
-          VER="17.03.0-ce"
-          curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
-          tar -xz -C /tmp -f /tmp/docker-$VER.tgz
-          mv /tmp/docker/* /usr/bin
+          name: Install Docker client
+          command: |
+            set -x
+            VER="17.03.0-ce"
+            curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
+            tar -xz -C /tmp -f /tmp/docker-$VER.tgz
+            mv /tmp/docker/* /usr/bin
       - run:
-        name: Purge cloudflare
-        command: |
-          docker run  -e "CLOUD_FLARE_API_KEY=$CLOUD_FLARE_API_KEY" \
-                      -e "CLOUD_FLARE_EMAIL=$CLOUD_FLARE_EMAIL" \
-                      mikesplain/cloudflare-client:latest \
-                      bin/purge_cache lizandmike.rocks
+          name: Purge cloudflare
+          command: |
+            docker run  -e "CLOUD_FLARE_API_KEY=$CLOUD_FLARE_API_KEY" \
+                        -e "CLOUD_FLARE_EMAIL=$CLOUD_FLARE_EMAIL" \
+                        mikesplain/cloudflare-client:latest \
+                        bin/purge_cache lizandmike.rocks
       - store_artifacts:
-        path: docs
+          path: docs
 
 workflows:
   version: 2
