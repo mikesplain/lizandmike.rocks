@@ -15,7 +15,7 @@ exclude:
   - Gemfile.lock
   - vendor
 
-gems:
+plugins:
   - jekyll-maps
 
 maps:
