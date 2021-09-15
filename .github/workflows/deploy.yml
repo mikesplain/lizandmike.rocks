@@ -1,0 +1,29 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ruby/setup-ruby@v1
+      with:
+        bundler-cache: true
+    - name: Deploy the site
+      run: |
+        if $(git diff-tree --no-commit-id --name-only @ | grep -qv docs); then
+          git diff-tree --no-commit-id --name-only @ | grep -v docs
+          bundle exec jekyll build --destination docs
+          git config --global user.email "noreply@lizandmike.rocks"
+          git config --global user.name "Circle Ci Docs Build"
+          git add .
+          git commit -am "Automated docs update"
+          git push
+        fi
+
+
